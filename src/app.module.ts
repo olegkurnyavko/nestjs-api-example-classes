@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { MeModule } from './modules/me/me.module';
 import { RouterModule } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -28,6 +29,16 @@ import { RouterModule } from '@nestjs/core';
       module: AuthModule,
     }
     ]),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: '_it323of_nestjs_api',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
   ],
   controllers: [],
   providers: [],
