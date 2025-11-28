@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './modules/user/user.module';
 import { TaskModule } from './modules/task/task.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -29,16 +29,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       module: AuthModule,
     }
     ]),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: '_it323of_nestjs_api',
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => ({
+        type: cfg.get<string>('DB_TYPE') as any,
+        host: cfg.get<string>('DB_HOST'),
+        port: cfg.get<number>('DB_PORT'),
+        username: cfg.get<string>('DB_USER'),
+        password: cfg.get<string>('DB_PASSWORD'),
+        database: cfg.get<string>('DB_NAME'),
+        autoLoadEntities: cfg.get<boolean>('DB_AUTO_LOAD_ENTITIES'),
+        synchronize: cfg.get<boolean>('DB_SYNC'),
+        logging: cfg.get<boolean>('DB_LOGGING'),
+      })
+    })
   ],
   controllers: [],
   providers: [],
