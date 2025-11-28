@@ -1,6 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { TaskService } from '../task/task.service';
+import { ResponseDto } from '../../common/dto/response.dto';
 
 @Controller()
 export class AdminController {
@@ -8,7 +9,7 @@ export class AdminController {
     constructor(private readonly userService: UserService, private readonly taskService: TaskService) { }
 
     @Get('user')
-    getAllUsers(): { message: string, errCode: number, data: any } {
+    getAllUsers(): ResponseDto<any[]> {
 
         const data = this.userService.getAllUsers();
         
@@ -17,7 +18,7 @@ export class AdminController {
 
 
     @Get('user/:id')
-    getUserProfile(@Param('id') id: number): { message: string, errCode: number, data: any } {
+    getUserProfile(@Param('id') id: number): ResponseDto<any> {
 
         const data = this.userService.getUserById(id);
         
@@ -26,7 +27,7 @@ export class AdminController {
 
     
     @Get('task')
-    getAllTasks(): { message: string, errCode: number, data: any[] } {
+    getAllTasks(): ResponseDto<any[]> {
 
         const data = this.taskService.getAllTasks();
         
@@ -35,7 +36,7 @@ export class AdminController {
 
 
     @Get('task/:id')
-    getTask(@Param('id') id: number): { message: string, errCode: number, data: any } {
+    getTask(@Param('id') id: number): ResponseDto<any> {
 
         const data = this.taskService.getTaskById(id);
 

@@ -3,6 +3,7 @@ import { UserService } from '../user/user.service';
 import { TaskService } from '../task/task.service';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
 import { UpdateUserDto } from '../user/dto/update-user.dto';
+import { ResponseDto } from '../../common/dto/response.dto';
 
 @Controller()
 export class MeController {
@@ -10,7 +11,7 @@ export class MeController {
     constructor(private readonly userService: UserService, private readonly taskService: TaskService) { }
 
     @Get()
-    getProfile(): { message: string, errCode: number, data: any } {
+    getProfile(): ResponseDto<any> {
 
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.getUserById(userId);
@@ -19,7 +20,7 @@ export class MeController {
     }
 
     @Patch()
-    updateProfile(@Body() dto: UpdateUserDto): { message: string, errCode: number, data: any } {
+    updateProfile(@Body() dto: UpdateUserDto): ResponseDto<any> {
 
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.updateUser(userId, dto);
@@ -28,7 +29,7 @@ export class MeController {
     }
 
     @Delete()
-    deleteProfile(): { message: string, errCode: number, data: any } {
+    deleteProfile(): ResponseDto<any> {
 
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.deleteUser(userId);
@@ -37,7 +38,7 @@ export class MeController {
     }
 
     @Post('task')
-    createTask(@Body() dto: CreateTaskDto): { message: string, errCode: number, data: any } {
+    createTask(@Body() dto: CreateTaskDto): ResponseDto<any> {
 
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.taskService.createTask(userId, dto);
@@ -46,7 +47,7 @@ export class MeController {
     }
 
     @Get('task')
-    getTasks(): { message: string, errCode: number, data: any } {
+    getTasks(): ResponseDto<any> {
 
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.taskService.getAllUserTasks(userId);
