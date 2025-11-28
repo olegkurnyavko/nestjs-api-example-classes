@@ -13,7 +13,7 @@ export class AdminController {
 
         const data = this.userService.getAllUsers();
         
-        return { message: "Получены все пользователи", errCode: 0, data: data };
+        return new ResponseDto("Получены все пользователи", 0, data);
     }
 
 
@@ -22,7 +22,7 @@ export class AdminController {
 
         const data = this.userService.getUserById(id);
         
-        return { message: `Получены данные пользователя с id = ${id}`, errCode: 0, data: data };
+        return new ResponseDto(`Получены данные пользователя с id = ${id}`, 0, data);
     }
 
     
@@ -31,7 +31,7 @@ export class AdminController {
 
         const data = this.taskService.getAllTasks();
         
-        return { message: "Получены все задачи", errCode: 0, data: data };
+        return new ResponseDto("Получены все задачи", 0, data);
     }
 
 
@@ -40,7 +40,7 @@ export class AdminController {
 
         const data = this.taskService.getTaskById(id);
 
-        return { message: `Получены данные задачи с id = ${id}`, errCode: 0, data: data };
+        return new ResponseDto(`Получены данные задачи с id = ${id}`, 0, data);
     }
 
 }

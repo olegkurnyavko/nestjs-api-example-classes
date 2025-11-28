@@ -16,7 +16,7 @@ export class MeController {
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.getUserById(userId);
 
-        return { message: "Мой профиль", errCode: 0, data: data }
+        return new ResponseDto("Мой профиль", 0, data);
     }
 
     @Patch()
@@ -25,7 +25,7 @@ export class MeController {
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.updateUser(userId, dto);
 
-        return { message: "Мой профиль обновлен", errCode: 0, data: data }
+        return new ResponseDto("Мой профиль обновлен", 0, data);
     }
 
     @Delete()
@@ -34,7 +34,7 @@ export class MeController {
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.userService.deleteUser(userId);
 
-        return { message: "Мой профиль удален", errCode: 0, data: data }
+        return new ResponseDto("Мой профиль удален", 0, data);
     }
 
     @Post('task')
@@ -43,7 +43,7 @@ export class MeController {
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.taskService.createTask(userId, dto);
 
-        return { message: "Задача создана", errCode: 0, data: data }
+        return new ResponseDto("Задача создана", 0, data);
     }
 
     @Get('task')
@@ -52,7 +52,7 @@ export class MeController {
         const userId = 1; // Значение должно быть получено из токена авторизации
         const data = this.taskService.getAllUserTasks(userId);
 
-        return { message: "Все задачи пользователя", errCode: 0, data: data }
+        return new ResponseDto("Все задачи пользователя", 0, data);
     }
 }
 

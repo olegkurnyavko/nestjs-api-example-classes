@@ -13,7 +13,7 @@ export class AuthController {
     signUp(@Body() dto: SignUpDto): ResponseDto<any> {
 
         const data = this.authService.signUp(dto)
-        return { message: "Пользователь зарегистрирован", errCode: 0, data: data };
+        return new ResponseDto("Пользователь зарегистрирован", 0, data);
 
     }
 
@@ -21,7 +21,7 @@ export class AuthController {
     signIn(@Body() dto: SignInDto): ResponseDto<any> {
 
         const data = this.authService.signIn(dto);
-        return { message: "Пользователь аутентифицирован", errCode: 0, data: data };
+        return new ResponseDto("Пользователь аутентифицирован", 0, data);
 
     }
 
@@ -29,7 +29,7 @@ export class AuthController {
     recovery(recoveryToken): ResponseDto<any> {
 
         const data = this.authService.recovery(recoveryToken);
-        return { message: "Пароль восстановлен", errCode: 0, data: data };
+        return new ResponseDto("Пароль восстановлен", 0, data);
         
     }
 }
