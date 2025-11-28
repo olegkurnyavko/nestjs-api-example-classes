@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
+import { NotFoundFilter } from './common/filters/not-found.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api/v1');
+  app.useGlobalFilters(new NotFoundFilter());
 
   const configService = app.get(ConfigService);
 
