@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AuthUserDto } from './dto/auth-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './user.entities';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -13,13 +16,12 @@ export class UserService {
     // JS не делает различия между ключами в кавычках и без. Для него все это
     // является js-объектом. При необходимости потом он сам превращает такие объекты в 
     // форматированные строки типа json.
+    
+    constructor(@InjectRepository(User) private readonly repo: Repository<User>) { }
 
-    getAllUsers(): any[] {
+    async getAllUsers(): Promise<User[]> {
 
-        const usersData: any = [
-            { id: 1, name: 'Jane Smith', email: 'jane@domain.com'  },
-            { id: 2, name: 'Tom Smith',  email: 'tom@domain.com'   },
-        ];
+        const usersData: any = await this.repo.find();
         return usersData;
 
     }

@@ -9,9 +9,9 @@ export class AdminController {
     constructor(private readonly userService: UserService, private readonly taskService: TaskService) { }
 
     @Get('user')
-    getAllUsers(): ResponseDto<any[]> {
+    async getAllUsers(): Promise<ResponseDto<any[]>> {
 
-        const data = this.userService.getAllUsers();
+        const data = await this.userService.getAllUsers();
         
         return new ResponseDto("Получены все пользователи", 0, data);
     }
