@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+import { AuthUserDto } from './dto/auth-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -28,23 +31,23 @@ export class UserService {
 
     }
 
-    createUser(login: string, password: string ): { login: string, password: string } {
+    createUser(dto: CreateUserDto): { login: string, password: string } {
         
-        const userData: { login: string, password: string } = { login, password, };
+        const userData: { login: string, password: string } = { login: dto.login, password: dto.password, };
         return userData;
 
     }
 
-    authenticateUser(login: string, password: string ): string {
+    authenticateUser(dto: AuthUserDto ): string {
 
         const data: string = 'jwt-token';
         return data;
 
     }
 
-    updateUser( id: number, name: string, password: string ): { id: number, name: string, password: string } {
+    updateUser( id: number, dto: UpdateUserDto ): { id: number, name: string, password: string } {
 
-        const userData: { id: number, name: string, password: string } = { id, name, password, };
+        const userData: { id: number, name: string, password: string } = { id: id, name: dto.name, password: dto.password, };
         return userData;
 
     }

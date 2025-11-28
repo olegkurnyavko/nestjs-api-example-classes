@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TaskService {
@@ -29,18 +31,18 @@ export class TaskService {
 
     }
 
-    createTask( title: string, description: string, dueDate: string ): { title: string, description: string, dueDate: string } {
+    createTask( dto: CreateTaskDto ): { title: string, description: string, dueDate: string } {
         
         const taskData: { title: string, description: string, dueDate: string }
-            = { title, description, dueDate, };
+            = { title: dto.title, description: dto.description, dueDate: dto.dueDate, };
         return taskData;
         
     }
 
-    updateTask( id: number, title: string, description: string, dueDate: string ): { id: number, title: string, description: string, dueDate: string, } {
+    updateTask( dto: UpdateTaskDto ): { id: number, title: string, description: string, dueDate: string, } {
 
         const taskData: { id: number, title: string, description: string, dueDate: string, }
-            = { id, title, description, dueDate, };
+            = { id: dto.id, title: dto.title, description: dto.description, dueDate: dto.dueDate, };
         return taskData;
 
     }

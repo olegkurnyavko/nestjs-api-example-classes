@@ -46,8 +46,9 @@ describe('UserService', () => {
   it('should create user with login and password', () => {
     const login = 'newuser';
     const password = '12345';
+    const dto = {login, password}
 
-    const result = service.createUser(login, password);
+    const result = service.createUser(dto);
 
     expect(result).toEqual({ login, password });
   });
@@ -58,8 +59,9 @@ describe('UserService', () => {
   it('should authenticate user and return jwt token', () => {
     const login = 'user';
     const password = 'pass';
+    const dto = {login, password}
 
-    const result = service.authenticateUser(login, password);
+    const result = service.authenticateUser(dto);
 
     expect(result).toBe('jwt-token');
   });
@@ -71,8 +73,10 @@ describe('UserService', () => {
     const id = 10;
     const name = 'Updated Name';
     const password = 'newpass';
+    const dto = { name, password }
 
-    const result = service.updateUser(id, name, password);
+
+    const result = service.updateUser(id, dto);
 
     expect(result).toEqual({
       id,

@@ -49,8 +49,9 @@ describe('TaskService', () => {
     const title = 'New task';
     const description = 'Do homework';
     const dueDate = '2025-12-31';
+    const dto = {title, description, dueDate}
 
-    const result = service.createTask(title, description, dueDate);
+    const result = service.createTask(dto);
 
     expect(result).toEqual({ title, description, dueDate });
   });
@@ -63,8 +64,9 @@ describe('TaskService', () => {
     const title = 'Updated';
     const description = 'Updated description';
     const dueDate = '2030-01-01';
+    const dto = { id, title, description, dueDate }
 
-    const result = service.updateTask(id, title, description, dueDate);
+    const result = service.updateTask(dto);
 
     expect(result).toEqual({
       id,
