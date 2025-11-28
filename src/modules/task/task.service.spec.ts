@@ -46,14 +46,15 @@ describe('TaskService', () => {
   // createTask
   // ============================
   it('should create a task', () => {
+    const userId = 2;
     const title = 'New task';
     const description = 'Do homework';
     const dueDate = '2025-12-31';
     const dto = {title, description, dueDate}
 
-    const result = service.createTask(dto);
+    const result = service.createTask(userId, dto);
 
-    expect(result).toEqual({ title, description, dueDate });
+    expect(result).toEqual({ userId, title, description, dueDate });
   });
 
   // ============================

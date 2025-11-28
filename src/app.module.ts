@@ -4,6 +4,7 @@ import { UserModule } from './modules/user/user.module';
 import { TaskModule } from './modules/task/task.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { MeModule } from './modules/me/me.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AdminModule } from './modules/admin/admin.module';
     TaskModule,
     AuthModule,
     AdminModule,
+    MeModule,
   ],
   controllers: [],
   providers: [],

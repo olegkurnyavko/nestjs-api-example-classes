@@ -31,10 +31,10 @@ export class TaskService {
 
     }
 
-    createTask( dto: CreateTaskDto ): { title: string, description: string, dueDate: string } {
+    createTask( userId: number, dto: CreateTaskDto ): { title: string, description: string, dueDate: string } {
         
-        const taskData: { title: string, description: string, dueDate: string }
-            = { title: dto.title, description: dto.description, dueDate: dto.dueDate, };
+        const taskData: { userId: number, title: string, description: string, dueDate: string }
+            = { userId: userId, title: dto.title, description: dto.description, dueDate: dto.dueDate, };
         return taskData;
         
     }
